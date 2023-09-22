@@ -1,0 +1,11 @@
+[ 2023-09-22 12:18:15,592 ] 24 root - INFO - Creating project by name :Loan Prediction
+[ 2023-09-22 12:18:15,592 ] 44 root - INFO - Creating directory; src for the file: __init__.py
+[ 2023-09-22 12:18:15,592 ] 49 root - INFO - Creating empty file: src\__init__.py
+[ 2023-09-22 12:18:15,592 ] 44 root - INFO - Creating directory; notebook for the file: trial.ipynb
+[ 2023-09-22 12:18:15,592 ] 49 root - INFO - Creating empty file: notebook\trial.ipynb
+[ 2023-09-22 12:18:15,600 ] 49 root - INFO - Creating empty file: requirements.txt
+[ 2023-09-22 12:18:15,600 ] 49 root - INFO - Creating empty file: setup.py
+[ 2023-09-22 12:18:15,600 ] 49 root - INFO - Creating empty file: README.md
+[ 2023-09-22 12:18:15,600 ] 44 root - INFO - Creating directory; artifacts for the file: data
+[ 2023-09-22 12:18:15,600 ] 49 root - INFO - Creating empty file: artifacts\data
+[ 2023-09-22 12:18:15,600 ] 49 root - INFO - Creating empty file: app.py
