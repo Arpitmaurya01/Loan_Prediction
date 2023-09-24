@@ -10,9 +10,9 @@ logging.info("Data is loaded")
 
 class Data_Desc():
     
-    print(df_train.shape)
-    print(df_test.shape)
-    print(df_train.info())
-    print(df_test.info())
+    df_train.shape
+    df_test.shape
+    df_train.info()
+    df_test.info()
 
 logging.info("printing of Description of Data is done")
