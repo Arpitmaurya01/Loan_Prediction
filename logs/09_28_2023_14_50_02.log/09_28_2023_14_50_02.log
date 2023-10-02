@@ -1,0 +1,6 @@
+[ 2023-09-28 14:50:02,934 ] 8 root - INFO - Data is loaded
+[ 2023-09-28 14:50:02,979 ] 18 root - INFO - printing of Description of Data is done
+[ 2023-09-28 14:50:02,995 ] 13 root - INFO - Data Preprocessing is Strated
+[ 2023-09-28 14:50:03,035 ] 43 root - INFO - Data Preprocessing is completed
+[ 2023-09-28 14:50:03,035 ] 12 root - INFO - Train test splite is starting
+[ 2023-09-28 14:50:03,063 ] 29 root - INFO - Train test splite is compleated

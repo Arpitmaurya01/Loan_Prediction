@@ -1,3 +1,4 @@
+import pandas as pd
 from sklearn.model_selection import GridSearchCV
 from sklearn.linear_model import LogisticRegression
 from sklearn.neighbors import KNeighborsClassifier
@@ -9,128 +10,181 @@ from sklearn.ensemble import GradientBoostingClassifier
 from xgboost import XGBClassifier
 from sklearn.metrics import accuracy_score
 from sklearn.metrics import confusion_matrix
+from sklearn.metrics import classification_report
+from src.exeption import CustomException
 
 from data_transformation import Train_Test
+import joblib
 
 from src.logger import logging
-from src.exeption import CustomException
+
 import sys
 
 data=Train_Test
 
+models = {
+
+                "Logistic Regression": LogisticRegression(),
+                "KNN"              : KNeighborsClassifier(),
+                "SVC"              :SVC(),
+                "Decision Tree": DecisionTreeClassifier(),
+                "Random Forest": RandomForestClassifier(),
+                "AdaBoost Classifier": AdaBoostClassifier(),
+                "Gradient Boosting": GradientBoostingClassifier(),
+                "XGBoost Classifier": XGBClassifier(),
+                
+                
+            }
+
+
 
 class model():
-    def lr():
-        model1=LogisticRegression()                             # Logistic Regression
-        model1.fit(data.X_train,data.y_train)
+     def __init__(self):
 
-        train_pred1=model1.predict(data.X_train) #train prediction
-        test_pred1=model1.predict(data.X_test)   #test prediction
+          pass
 
-        train_acc1=accuracy_score(data.y_train,train_pred1)
-        test_acc1=accuracy_score(data.y_test,test_pred1)
+     logging.info("Model Training is startted")
 
-        print("Logistic Regression : ","Train Accuracy = ",train_acc1,"Test Accuracy = ",test_acc1)
-        logging.info("Logistic Regression is done")
-    def knn():
-         model2=KNeighborsClassifier()                # KNN
-         model2.fit(data.X_train,data.y_train)
+     try:
+          def modeling():
 
-         train_pred2=model2.predict(data.X_train) #train prediction
-         test_pred2=model2.predict(data.X_test)   #test prediction
+               best=[]
 
-         train_acc2=accuracy_score(data.y_train,train_pred2)
-         test_acc2=accuracy_score(data.y_test,test_pred2)
+          
 
-         print("KNN : ","Train Accuracy = ",train_acc2,"Test Accuracy = ",test_acc2)
-         logging.info("KNN is done")
-
-    def svc():
-         model2=SVC()                # Support Vector machine
-         model2.fit(data.X_train,data.y_train)
-
-         train_pred2=model2.predict(data.X_train) #train prediction
-         test_pred2=model2.predict(data.X_test)   #test prediction
-
-         train_acc2=accuracy_score(data.y_train,train_pred2)
-         test_acc2=accuracy_score(data.y_test,test_pred2)
-
-         print("SVC : ","Train Accuracy = ",train_acc2,"Test Accuracy = ",test_acc2)
-         logging.info("SVC is done")
+               for i in range(len(models)):
 
 
-    def dt():
-         model2=DecisionTreeClassifier()                # Decision Treee
-         model2.fit(data.X_train,data.y_train)
+                    model2=list(models.values())[i]                       
+                    model2.fit(data.X_train,data.y_train)
+                    train_pred2=model2.predict(data.X_train) #train prediction
+                    test_pred2=model2.predict(data.X_test)   #test prediction
+                    train_acc2=accuracy_score(data.y_train,train_pred2)
+                    test_acc2=accuracy_score(data.y_test,test_pred2)
 
-         train_pred2=model2.predict(data.X_train) #train prediction
-         test_pred2=model2.predict(data.X_test)   #test prediction
+                    print(list(models.keys())[i] , "Train Accuracy = ",train_acc2,"Test Accuracy = ",test_acc2)
+                    con_mat=confusion_matrix(data.y_test,test_pred2)
+                    classif_report=classification_report(data.y_test,test_pred2)
+                    #print("Confusion Matrix :", con_mat)
+                    #print("classification_report :", classif_report)
 
-         train_acc2=accuracy_score(data.y_train,train_pred2)
-         test_acc2=accuracy_score(data.y_test,test_pred2)
 
-         print("Decision Tree : ","Train Accuracy = ",train_acc2,"Test Accuracy = ",test_acc2)
-         logging.info("Decision tree  is done")   
-    def rf():
-         model2=RandomForestClassifier()                # Random Forest
-         model2.fit(data.X_train,data.y_train)
 
-         train_pred2=model2.predict(data.X_train) #train prediction
-         test_pred2=model2.predict(data.X_test)   #test prediction
 
-         train_acc2=accuracy_score(data.y_train,train_pred2)
-         test_acc2=accuracy_score(data.y_test,test_pred2)
 
-         print("Random Forest : ","Train Accuracy = ",train_acc2,"Test Accuracy = ",test_acc2)
-         logging.info("Random Forest is done")
-    def ad_boost():
-          model2=AdaBoostClassifier()                # Adaboost
-          model2.fit(data.X_train,data.y_train)
 
-          train_pred2=model2.predict(data.X_train) #train prediction
-          test_pred2=model2.predict(data.X_test)   #test prediction
 
-          train_acc2=accuracy_score(data.y_train,train_pred2)
-          test_acc2=accuracy_score(data.y_test,test_pred2)
 
-          print("Adaboost : ","Train Accuracy = ",train_acc2,"Test Accuracy = ",test_acc2)
-          logging.info("Adaboost is done")
-         
-    def Grad_boost():
-          model2=GradientBoostingClassifier()                # Gradient Boost
-          model2.fit(data.X_train,data.y_train)
 
-          train_pred2=model2.predict(data.X_train) #train prediction
-          test_pred2=model2.predict(data.X_test)   #test prediction
+          
+     except Exception as e:
+          CustomException(e,sys)
+     logging.info("Model Training is Completed")
+     
 
-          train_acc2=accuracy_score(data.y_train,train_pred2)
-          test_acc2=accuracy_score(data.y_test,test_pred2)
 
-          print("Gradient Boost : ","Train Accuracy = ",train_acc2,"Test Accuracy = ",test_acc2)
-          logging.info("gradient boost is done")
 
-    def xg_boost():
-        model2=XGBClassifier()                # XG boost
-        model2.fit(data.X_train,data.y_train)
+par={
+     "Logistic regression":{'penalty' : ['l1', 'l2', 'elasticnet', 'none'],
+                         'solver' : ['lbfgs','newton-cg','liblinear','sag','saga'],
+                         'max_iter' : [100, 1000,2500, 5000]},
 
-        train_pred2=model2.predict(data.X_train) #train prediction
-        test_pred2=model2.predict(data.X_test)   #test prediction
+     "KNN"     :{'n_neighbors':list(range(1,31)),
+               "p":[1,2]},
 
-        train_acc2=accuracy_score(data.y_train,train_pred2)
-        test_acc2=accuracy_score(data.y_test,test_pred2)
+     "SVC"         :{'C':[1.5,1.6,2,2.5],
+               'kernel':["linear","rbf"],
+               'gamma':[0.1,0.5,0.6,1]},
 
-        print("XG_boost classifier : ","Train Accuracy = ",train_acc2,"Test Accuracy = ",test_acc2)
-        logging.info("XG boost is done")
+     "Decision Tree":{'splitter' : ['best', 'random'],
+               'criterion' : ['gini', 'entropy'],
+               'max_depth': [4,5,6,7,8],
+               'min_samples_split': [4,5,6,7,8,9,10],
+               'min_samples_leaf': [3,4,5,6,7,8,9,10]},
 
-         
-         
-model.lr()
-model.knn()
-model.svc()
-model.dt()
-model.rf()
-model.ad_boost()
-model.Grad_boost()
-model.xg_boost()
-        
-        
+     "Random Forest":{'n_estimators':list(range(1,51)),
+               "criterion" : ['gini' , 'entropy'],
+               'max_depth': [5,6,7]},
+
+     "AdaBoost Classifier":{'n_estimators':list(range(1,100)),
+          "learning_rate":[0.001,0.01,0.1,0.005,0.05]},
+
+     "Gradient Boosting":{'n_estimators':list(range(1,51)),
+               "learning_rate":[0.5,0.01,0.1],
+               "max_depth" : [4,5,6]},
+
+     "XGBoost Classfier":{'n_estimators':list(range(1,51)),
+          'learning_rate':[0.1,0.3,1],
+          'max_depth':[2,4,5,6]},
+
+
+}
+class HyperParameterTuning():
+     def __init__(self):
+          pass
+
+     logging.info("Hyperparameter tuning is starting")
+    
+
+     try:
+           def tuning():
+                 
+
+               for i in range(len(list(models))):
+                                            
+                    est=list(models.values())[i]
+                    parm= list(par.values())[i]
+          
+
+                    esc=GridSearchCV(est,parm,cv=5)                   #Hyperparameter Tunning
+                    esc.fit(data.X_train,data.y_train)
+
+                    est.set_params(**esc.best_params_)                # Find Best parameter
+
+                    est.fit(data.X_train,data.y_train)
+
+                    train_pred=est.predict(data.X_train)
+                    test_pred=est.predict(data.X_test)
+
+                    train_accuracy=accuracy_score(data.y_train,train_pred)
+                    test_accuracy=accuracy_score(data.y_test,test_pred)
+
+                    print("{}'s Train Accuracy : {} and Test Accuracy : {}".format(list(models.keys())[i],train_accuracy,test_accuracy))
+
+     except Exception as e:
+          CustomException(e,sys) 
+
+     logging.info("Hyperparameter Tuning is completed")
+
+#HyperParameterTuning.tuning()
+
+class Best_Model():
+                    
+                    est=XGBClassifier()
+                    parm= {'n_estimators':list(range(1,51)),
+                                             'learning_rate':[0.1,0.3,1],
+                                             'max_depth':[2,4,5,6]}
+          
+
+                    esc=GridSearchCV(est,parm,cv=5)                   #Hyperparameter Tunning
+                    esc.fit(data.X_train,data.y_train)
+
+                    est.set_params(**esc.best_params_)                # Find Best parameter
+
+                    est.fit(data.X_train,data.y_train)
+
+                    train_pred=est.predict(data.X_train)
+                    test_pred=est.predict(data.X_test)
+
+                    train_accuracy=accuracy_score(data.y_train,train_pred)
+                    test_accuracy=accuracy_score(data.y_test,test_pred)
+
+                    print(train_accuracy)
+                    print(test_accuracy)
+
+                    joblib.dump(est,"artifacts/best_model.joblib")
+     
+     
+
+
+Best_Model

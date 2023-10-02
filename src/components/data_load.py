@@ -1,5 +1,5 @@
 import pandas as pd
-from src.logger import logging
+from  src.logger import logging
 #Load Data
 df_train=pd.read_csv("artifacts\\training_set.csv")
 

@@ -1,0 +1,14 @@
+[ 2023-09-28 12:33:03,211 ] 8 root - INFO - Data is loaded
+[ 2023-09-28 12:33:03,366 ] 18 root - INFO - printing of Description of Data is done
+[ 2023-09-28 12:33:03,383 ] 13 root - INFO - Data Preprocessing is Strated
+[ 2023-09-28 12:33:03,416 ] 43 root - INFO - Data Preprocessing is completed
+[ 2023-09-28 12:33:03,416 ] 12 root - INFO - Train test splite is starting
+[ 2023-09-28 12:33:03,466 ] 29 root - INFO - Train test splite is compleated
+[ 2023-09-28 12:33:03,646 ] 34 root - INFO - Logistic Regression is done
+[ 2023-09-28 12:33:03,965 ] 46 root - INFO - KNN is done
+[ 2023-09-28 12:33:04,049 ] 59 root - INFO - SVC is done
+[ 2023-09-28 12:33:04,103 ] 73 root - INFO - Decision tree  is done
+[ 2023-09-28 12:33:04,511 ] 85 root - INFO - Random Forest is done
+[ 2023-09-28 12:33:04,785 ] 97 root - INFO - Adaboost is done
+[ 2023-09-28 12:33:05,065 ] 110 root - INFO - gradient boost is done
+[ 2023-09-28 12:33:05,357 ] 123 root - INFO - XG boost is done

@@ -1,2 +1,4 @@
 Pandas
-sklearn
+numpy
+scikit-learn
+xgboost

@@ -1,9 +1,9 @@
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from data_ingention import Data_Clean
-
-from src.logger import logging
 from src.exeption import CustomException
+from src.logger import logging
+
 import sys
 
 data=Data_Clean
