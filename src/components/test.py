@@ -1,5 +1,6 @@
 import pandas as pd
 import joblib
+from data_transformation import Train_Test
 
 import data_load
 
@@ -30,6 +31,9 @@ if data.df_test.isnull().sum().sum()!=0:
 
 
 print(data.df_test.isnull().sum())
+sc=Train_Test.sc
+
+data.df_test=sc.transform(data.df_test)
 
 
 model=joblib.load("artifacts\\best_model.joblib")

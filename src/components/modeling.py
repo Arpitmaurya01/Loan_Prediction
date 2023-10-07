@@ -7,7 +7,7 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.ensemble import AdaBoostClassifier
 from sklearn.ensemble import GradientBoostingClassifier
-from xgboost import XGBClassifier
+import xgboost
 from sklearn.metrics import accuracy_score
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import classification_report
@@ -31,7 +31,7 @@ models = {
                 "Random Forest": RandomForestClassifier(),
                 "AdaBoost Classifier": AdaBoostClassifier(),
                 "Gradient Boosting": GradientBoostingClassifier(),
-                "XGBoost Classifier": XGBClassifier(),
+                "XGBoost Classifier": xgboost.XGBClassifier(),
                 
                 
             }
@@ -160,10 +160,10 @@ class HyperParameterTuning():
 
 class Best_Model():
                     
-                    est=XGBClassifier()
-                    parm= {'n_estimators':list(range(1,51)),
-                                             'learning_rate':[0.1,0.3,1],
-                                             'max_depth':[2,4,5,6]}
+                    est=LogisticRegression()
+                    parm= {'penalty' : ['l1', 'l2', 'elasticnet', 'none'],
+                         'solver' : ['lbfgs','newton-cg','liblinear','sag','saga'],
+                         'max_iter' : [100, 1000,2500, 5000]}
           
 
                     esc=GridSearchCV(est,parm,cv=5)                   #Hyperparameter Tunning
@@ -182,7 +182,7 @@ class Best_Model():
                     print(train_accuracy)
                     print(test_accuracy)
 
-                    joblib.dump(est,"artifacts/best_model.joblib")
+                    joblib.dump(est,"artifacts//best_model.pkl")
      
      
 
