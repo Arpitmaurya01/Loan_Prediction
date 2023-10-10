@@ -38,7 +38,7 @@ models = {
 
 
 
-class model():
+class Model():
      def __init__(self):
 
           pass
@@ -160,10 +160,12 @@ class HyperParameterTuning():
 
 class Best_Model():
                     
-                    est=LogisticRegression()
-                    parm= {'penalty' : ['l1', 'l2', 'elasticnet', 'none'],
-                         'solver' : ['lbfgs','newton-cg','liblinear','sag','saga'],
-                         'max_iter' : [100, 1000,2500, 5000]}
+                    est=DecisionTreeClassifier()
+                    parm= {'splitter' : ['best', 'random'],
+               'criterion' : ['gini', 'entropy'],
+               'max_depth': [4,5,6,7,8],
+               'min_samples_split': [4,5,6,7,8,9,10],
+               'min_samples_leaf': [3,4,5,6,7,8,9,10]}
           
 
                     esc=GridSearchCV(est,parm,cv=5)                   #Hyperparameter Tunning
@@ -182,9 +184,6 @@ class Best_Model():
                     print(train_accuracy)
                     print(test_accuracy)
 
-                    joblib.dump(est,"artifacts//best_model.pkl")
+                    joblib.dump(est,"artifacts//best_model.joblib")
      
-     
-
-
-Best_Model
+Model

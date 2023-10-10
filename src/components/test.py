@@ -36,7 +36,7 @@ sc=Train_Test.sc
 data.df_test=sc.transform(data.df_test)
 
 
-model=joblib.load("artifacts\\best_model.joblib")
+model=joblib.load("artifacts\\best_model.pkl")
 
 test_predict=model.predict(data.df_test)
 predicted_values=pd.DataFrame(test_predict)
