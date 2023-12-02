@@ -3,6 +3,7 @@ import numpy as np
 import joblib
 import streamlit as st
 
+
 #Loading the saved model
 
 loaded_model=joblib.load("artifacts/best_model.joblib")
